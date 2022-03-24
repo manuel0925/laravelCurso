@@ -21,9 +21,35 @@
                     id="titulo" placeholder="Titulo receta"
                     class="form-control @error('titulo') is-invalid @enderror"
                     value="{{old("titulo")}}"
-                />
+                >
 
                 @error('titulo')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{$message}}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group pb-3">
+                <label for="categoria"> Categoria</label>
+
+                <select
+                    name="categoria"
+                    id="categoria"
+                    class="form-control
+                    @error('categoria')
+                        is-invalid
+                    @enderror">
+
+                    <option value="">--seleccione--</option>
+                    @foreach ($categorias as $id=>$categoria)
+                        <option
+                            value="{{$id}}"
+                            {{ old('categoria') == $id ? 'selected':""}}
+                        ">{{$categoria}}</option>
+                    @endforeach
+                </select>
+
+                @error('categoria')
                     <span class="invalid-feedback d-block" role="alert">
                         <strong>{{$message}}</strong>
                     </span>
