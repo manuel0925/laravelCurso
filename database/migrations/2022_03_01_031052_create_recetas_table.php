@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('ingredientes');
             $table->text('preparacion');
+            $table->text('imagen');
             $table->foreignId('user_id')->references('id')->on('users')->comment('asigna el usuario que lo creo');
             $table->foreignId('categoria_id')->references('id')->on('categoria_recetas')->comment('asigna el la categoria a la que pertenece');
             $table->timestamps();
