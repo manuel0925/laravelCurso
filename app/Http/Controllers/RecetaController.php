@@ -6,6 +6,7 @@ use App\Models\Receta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class RecetaController extends Controller
 {
@@ -52,6 +53,11 @@ class RecetaController extends Controller
         ]);
 
         $url_imagen = $request['imagen']->store('subida_imagens','public');
+
+        //resize image
+
+        $img = Image :: make(public_path("storage/{$url_imagen}"))->fit(1200,500);
+        $img->save();
 
         DB::table('recetas')->insert([
             "titulo"=> $data['titulo'],
